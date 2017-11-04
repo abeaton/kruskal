@@ -1,4 +1,5 @@
 import org.scalatest.{ FlatSpec }
+import scala.collection.mutable.{ Set }
 
 class KruskalTest extends FlatSpec {
 
@@ -9,7 +10,7 @@ class KruskalTest extends FlatSpec {
     val graph = Set(onlyEdge);
 
     val mst = Kruskal.GetMST(graph);
-    assertResult(mst, onlyEdge);
+    assert(mst == graph);
   }
 
   "Kruskals" should "return all edges if graph disjoint" in {
@@ -28,7 +29,7 @@ class KruskalTest extends FlatSpec {
     val graph = Set(firstEdge, secondEdge, thirdEdge);
 
     val mst = Kruskal.GetMST(graph);
-    assertResult(mst, graph);
+    assert(mst == graph);
   }
 
   "Kruskals" should "return all edges if graph is linear" in {
@@ -48,7 +49,7 @@ class KruskalTest extends FlatSpec {
     val graph = Set(firstEdge, secondEdge, thirdEdge, fourthEdge, fifthEdge);
 
     val mst = Kruskal.GetMST(graph);
-    assertResult(mst, graph);
+    assert(mst == graph);
   }
 
   "Kruskals" should "return minimum subset of edges if graph is interconnected" in {
@@ -67,7 +68,7 @@ class KruskalTest extends FlatSpec {
     val graph = Set(ab, ac, ad, bc, bd, cd);
 
     val mst = Kruskal.GetMST(graph);
-    assertResult(mst, Set(ad, ac, ab));
+    assert(mst == Set(ad, ac, ab));
   }
 
   "Kruskals" should "should find mst of complicated graph" in {
@@ -99,6 +100,6 @@ class KruskalTest extends FlatSpec {
     val graph = Set(ab, ac, ad, be, bf, cg, ch, df, dg, ei, fj, gi, hj);
 
     val mst = Kruskal.GetMST(graph);
-    assertResult(mst, Set(ab, ac, ad, be, df, dg, ch, fj, gi));
+    assert(mst == Set(ab, ac, ad, be, df, dg, ch, fj, gi));
   }
 }
